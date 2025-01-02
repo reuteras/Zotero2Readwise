@@ -31,22 +31,22 @@ class Zotero2Readwise:
         self.since = since
 
     def get_all_zotero_items(self) -> List[Dict]:
-            """
-            Retrieves all Zotero items of the specified types (notes and/or annotations) that were modified since the specified date.
+        """
+        Retrieves all Zotero items of the specified types (notes and/or annotations) that were modified since the specified date.
 
-            Returns:
-            A list of dictionaries representing the retrieved Zotero items.
-            """
-            items = []
-            if self.include_annots:
-                items.extend(self.retrieve_all("annotation", self.since))
+        Returns:
+        A list of dictionaries representing the retrieved Zotero items.
+        """
+        items = []
+        if self.include_annots:
+            items.extend(self.retrieve_all("annotation", self.since))
 
-            if self.include_notes:
-                items.extend(self.retrieve_all("note", self.since))
+        if self.include_notes:
+            items.extend(self.retrieve_all("note", self.since))
 
-            print(f"{len(items)} Zotero items are retrieved.")
+        print(f"{len(items)} Zotero items are retrieved.")
 
-            return items
+        return items
 
     def run(self, zot_annots_notes: List[Dict] = None) -> None:
         if zot_annots_notes is None:
@@ -79,5 +79,5 @@ class Zotero2Readwise:
             print(f"Retrieving {item_type}s since last run from Zotero Database")
 
         print("It may take some time...")
-        query = self.zotero_client.items(itemType={item_type}, since=since)
+        query = self.zotero_client.items(itemType=item_type, since=since)
         return self.zotero_client.everything(query)

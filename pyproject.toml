@@ -15,7 +15,7 @@ keywords = [
 classifiers = [
     "Topic :: Software Development :: Build Tools",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Utilities",
     "Development Status :: 3 - Alpha"
@@ -34,25 +34,17 @@ version_variables = [
 [tool.semantic_release.remote.token]
 env = "GH_TOKEN" # default env name containing the GitHub Token 
 
-[tool.poetry.dependencies]
-python = "^3.8"
-Pyzotero = "^1.4.26"
-requests = "^2.26.0"
-
-[tool.poetry.group.dev.dependencies]
-ipython = "^7.32.0"
-pre-commit = "^2.16.0"
-ipdb = "^0.13.9"
-
+[tool.pdm.build]
+includes = ["zotero2readwise"]
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [tool.black]
 line-length = 100
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.11"
 
 [tool.ruff]
 target-version = "py38"
@@ -77,3 +69,42 @@ known-first-party = ["zotero2readwise"]
 
 [tool.ruff.pydocstyle]
 convention="google"
+
+[project]
+authors = [
+    {name = "ealizadeh", email = "hello@ealizadeh.com"},
+]
+license = {text = "MIT"}
+requires-python = "<4.0,>=3.8"
+dependencies = [
+    "Pyzotero<1.6.2,>=1.6.1",
+    "requests<3.0.0,>=2.26.0",
+]
+name = "zotero2readwise"
+version = "0.4.5"
+description = "Export your Zotero annotations and notes to Readwise"
+readme = "README.md"
+keywords = [
+    "Zotero",
+    "Readwise",
+]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Utilities",
+    "Development Status :: 3 - Alpha",
+]
+
+[project.urls]
+homepage = "https://github.com/e-alizadeh/Zotero2Readwise"
+repository = "https://github.com/e-alizadeh/Zotero2Readwise"
+documentation = "https://github.com/e-alizadeh/Zotero2Readwise"
+
+[dependency-groups]
+dev = [
+    "ipython<8.0.0,>=7.32.0",
+    "pre-commit<3.0.0,>=2.16.0",
+    "ipdb<1.0.0,>=0.13.9",
+]

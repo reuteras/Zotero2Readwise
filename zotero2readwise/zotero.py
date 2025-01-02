@@ -1,3 +1,5 @@
+import re
+
 from dataclasses import dataclass, field
 from json import dump
 from os import environ
@@ -43,16 +45,14 @@ class ZoteroItem:
             self.relations = self.relations.get("dc:relation")
         
         if self.creators:
-            et_al = "et al."
+            et_al = " et al."
             max_length = 1024 - len(et_al)
-            creators_str = ", ".join(self.creators)
-            if len(creators_str) > max_length:
+            if len(self.creators) > max_length:
                 # Reset creators_str and find the first n creators that fit in max_length
-                creators_str = ""
-                while self.creators and len(creators_str) < max_length:
-                    creators_str += self.creators.pop() + ", "
-                creators_str += et_al
-            self.creators = creators_str
+                while len(self.creators) < max_length:
+                    match = re.search(r'(.*),[^,]+$', self.creators)[1]
+                    self.creators = match
+                self.creators += et_al
 
 
     def get_nonempty_params(self) -> Dict:
@@ -146,7 +146,6 @@ class ZoteroAnnotationsNotes:
 
         metadata = {
             "title": data["title"],
-            # "date": data["date"],
             "tags": data["tags"],
             "document_type": data["itemType"],
             "source_url": top_item["links"]["alternate"]["href"],
@@ -154,10 +153,13 @@ class ZoteroAnnotationsNotes:
             "attachment_url": "",
         }
         if "creators" in data:
-            metadata["creators"] = [
-                creator["firstName"] + " " + creator["lastName"]
-                for creator in data["creators"]
-            ]
+            for creator in data["creators"]:
+                if metadata["creators"] != "":
+                    metadata["creators"] += ", "
+                try:
+                    metadata["creators"] += creator["firstName"] + " " + creator["lastName"]
+                except Exception:
+                    metadata["creators"] += creator["name"]
         if "attachment" in top_item["links"] and top_item["links"]["attachment"]["attachmentType"] == "application/pdf":
             metadata["attachment_url"] = top_item["links"]["attachment"]["href"]
 
@@ -179,9 +181,15 @@ class ZoteroAnnotationsNotes:
             elif annotation_type == "note":
                 text = data["annotationComment"]
                 comment = ""
-            else:
+            elif annotation_type == "image":
+                print("Image annotations are not currently supported.")
                 raise NotImplementedError(
-                    "Handwritten annotations are not currently supported."
+                    "Image  annotations are not currently supported."
+                )
+            else:
+                print(f"Annotations of type {annotation_type} are not currently supported.")
+                raise NotImplementedError(
+                    f"Annotations of type {annotation_type} are not currently supported."
                 )
         elif item_type == "note":
             text = data["note"]
