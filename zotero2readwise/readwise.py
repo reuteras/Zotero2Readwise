@@ -109,14 +109,18 @@ class Readwise:
             title=annot.title,
             note=highlight_note,
             author=annot.creators,
-            category=Category.articles.name
-            if annot.document_type != "book"
-            else Category.books.name,
+            category=(
+                Category.articles.name
+                if annot.document_type != "book"
+                else Category.books.name
+            ),
             highlighted_at=annot.annotated_at,
             source_url=annot.source_url,
-            highlight_url=annot.annotation_url
-            if highlight_url is None
-            else highlight_url,
+            highlight_url=(
+                annot.annotation_url
+                if highlight_url is None
+                else highlight_url
+            ),
             location=location,
         )
 

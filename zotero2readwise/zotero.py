@@ -156,7 +156,7 @@ class ZoteroAnnotationsNotes:
                     metadata["creators"] += ", "
                 try:
                     metadata["creators"] += (
-                            creator["firstName"] + " " + creator["lastName"]
+                        creator["firstName"] + " " + creator["lastName"]
                     )
                 except Exception:
                     metadata["creators"] += creator["name"]

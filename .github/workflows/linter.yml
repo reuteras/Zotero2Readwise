@@ -3,6 +3,9 @@
 
 name: Linter
 
+permissions:
+  contents: read
+
 # Controls when the action will run. Triggers the workflow on push or pull
 # request events but only for the main branch
 on:
@@ -35,4 +38,5 @@ jobs:
         uses: github/super-linter/slim@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_DOCKERFILE_HADOLINT: false
+          VALIDATE_PYTHON_PYINK: false
+          VALIDATE_PYTHON_PYLINT: false

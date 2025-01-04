@@ -48,14 +48,14 @@ if __name__ == "__main__":
             "#a28ae5",
             "#e56eee",
             "#f19837",
-            "#aaaaaa"
+            "#aaaaaa",
         ],
         action="append",
         default=[],
         help="Filter Zotero annotations by given color | Options: '#ffd400' (yellow), '#ff6666' (red), '#5fb236' (green), '#2ea8e5' (blue), '#a28ae5' (purple), '#e56eee' (magenta), '#f19837' (orange), '#aaaaaa' (gray)",
     )
     parser.add_argument(
-        "--use_since", action='store_true', help="Include Zotero items since last run"
+        "--use_since", action="store_true", help="Include Zotero items since last run"
     )
 
     args = vars(parser.parse_args())
