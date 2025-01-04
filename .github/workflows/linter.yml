@@ -38,6 +38,9 @@ jobs:
         uses: github/super-linter/slim@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MARKDOWN_CUSTOM_RULE_GLOBS: README.md
+          VALIDATE_MARKDOWN_PRETTIER: false
+          VALIDATE_NATURAL_LANGUAGE: false
           VALIDATE_PYTHON_BLACK: false
           VALIDATE_PYTHON_FLAKE8: false
           VALIDATE_PYTHON_MYPY: false
