@@ -32,6 +32,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Lint Code Base
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter/slim@v7
         env:
           VALIDATE_DOCKERFILE_HADOLINT: false
