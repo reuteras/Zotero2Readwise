@@ -49,10 +49,9 @@ class ZoteroItem:
             if len(self.creators) > max_length:
                 # Reset creators_str and find the first n creators that fit in max_length
                 while len(self.creators) < max_length:
-                    match = re.search(r'(.*),[^,]+$', self.creators)[1]
+                    match = re.search(r"(.*),[^,]+$", self.creators)[1]
                     self.creators = match
                 self.creators += et_al
-
 
     def get_nonempty_params(self) -> Dict:
         return {k: v for k, v in self.__dict__.items() if v}
@@ -156,10 +155,15 @@ class ZoteroAnnotationsNotes:
                 if metadata["creators"] != "":
                     metadata["creators"] += ", "
                 try:
-                    metadata["creators"] += creator["firstName"] + " " + creator["lastName"]
+                    metadata["creators"] += (
+                            creator["firstName"] + " " + creator["lastName"]
+                    )
                 except Exception:
                     metadata["creators"] += creator["name"]
-        if "attachment" in top_item["links"] and top_item["links"]["attachment"]["attachmentType"] == "application/pdf":
+        if (
+            "attachment" in top_item["links"]
+            and top_item["links"]["attachment"]["attachmentType"] == "application/pdf"
+        ):
             metadata["attachment_url"] = top_item["links"]["attachment"]["href"]
 
         self._cache[top_item_key] = metadata
@@ -186,7 +190,9 @@ class ZoteroAnnotationsNotes:
                     "Image  annotations are not currently supported."
                 )
             else:
-                print(f"Annotations of type {annotation_type} are not currently supported.")
+                print(
+                    f"Annotations of type {annotation_type} are not currently supported."
+                )
                 raise NotImplementedError(
                     f"Annotations of type {annotation_type} are not currently supported."
                 )
@@ -230,7 +236,10 @@ class ZoteroAnnotationsNotes:
         )
         for annot in annots:
             try:
-                if len(self.filter_colors) == 0 or annot["data"]["annotationColor"] in self.filter_colors:
+                if (
+                    len(self.filter_colors) == 0
+                    or annot["data"]["annotationColor"] in self.filter_colors
+                ):
                     formatted_annots.append(self.format_item(annot))
             except Exception:
                 self.failed_items.append(annot)

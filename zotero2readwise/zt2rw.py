@@ -17,7 +17,7 @@ class Zotero2Readwise:
         include_annotations: bool = True,
         include_notes: bool = False,
         filter_colors: List[str] = None,
-        since: int = 0
+        since: int = 0,
     ):
         self.readwise = Readwise(readwise_token)
         self.zotero_client = get_zotero_client(
