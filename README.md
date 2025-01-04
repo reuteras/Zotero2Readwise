@@ -14,7 +14,7 @@ If you annotate your files outside the new Zotero PDF reader, this library may n
 
 **_This library is for you if you annotate (highlight + note) using the Zotero's PDF reader (including the Zotero iOS)_**
 
-👉***Updating an existing Zotero annotation or note and re-running this library will update the corresponding Readwise highlight without creating a duplicate!***
+👉___Updating an existing Zotero annotation or note and re-running this library will update the corresponding Readwise highlight without creating a duplicate!___
 
 † Annotations made in the new Zotero PDF reader and note editor.
 
@@ -37,15 +37,15 @@ Note: If you do not have pip installed on your system, you can follow the instru
 
 ## Usage
 Since we have to retrieve the notes from Zotero API and then upload them to the Readwise, the minimum requirements are:
-* **Readwise access token** [Required]: You can get your access token from https://readwise.io/access_token
+* **Readwise access token** [Required]: You can get your access token from [https://readwise.io/access_token](https://readwise.io/access_token)
 * **Zotero API key** [Required]: Create a new Zotero Key from [your Zotero settings](https://www.zotero.org/settings/keys/new)
 * **Zotero personal or group ID** [Required]:
-    * Your **personal library ID** (aka **userID**) can be found [here](https://www.zotero.org/settings/keys) next to `Your userID for use in API calls is XXXXXX`.
-    * If you're using a **group library**, you can find the library ID by
+  * Your **personal library ID** (aka **userID**) can be found [here](https://www.zotero.org/settings/keys) next to `Your userID for use in API calls is XXXXXX`.
+  * If you're using a **group library**, you can find the library ID by
         1. Go to `https://www.zotero.org/groups/`
         2. Click on the interested group.
-        3. You can find the library ID from the URL link that has format like *https://www.zotero.org/groups/<group_id>/group_name*. The number between `/groups/` and `/group_name` is the libarry ID.
-* **Zotero library type** [Optional]: *"user"* (default) if using personal library and *"group"* if using group library.
+        3. You can find the library ID from the URL link that has format like _[https://www.zotero.org/groups/](https://www.zotero.org/groups/)<group_id>/group_name_. The number between `/groups/` and `/group_name` is the libarry ID.
+* **Zotero library type** [Optional]: _"user"_ (default) if using personal library and _"group"_ if using group library.
 
 Note that if you want to retrieve annotations and notes from a group, you should provide the group ID (`zotero_library_id=<group_id>`) and set the library type to group (`zotero_library_type="group"`).
 
@@ -80,10 +80,10 @@ zt_rw.readwise.save_failed_items_to_json("failed_readwise_highlights.json")
 ---
 ## [Zotero2Readwise-Sync](https://github.com/e-alizadeh/Zotero2Readwise-Sync)
 
-### 👉 Set up a scheduled automation once and forget about it!
+### 👉 Set up a scheduled automation once and forget about it
 
 You can fork my repository [Zotero2Readwise-Sync](https://github.com/e-alizadeh/Zotero2Readwise-Sync) repository that contain
-the cronjob (time-based Job scheduler) using GitHub actions to automatically retrieve all your Zotero annotations/notes,
+the cronjob (time-based Job scheduler) using GitHub Actions to automatically retrieve all your Zotero annotations/notes,
 and then push them to Readwise.
 You can use the forked repository without even changing a single line (of course if you're happy with the default settings!)
 
@@ -91,7 +91,7 @@ You can use the forked repository without even changing a single line (of course
 Feel free to request a new feature or report a bug in GitHub issue [here](https://github.com/e-alizadeh/Zotero2Readwise/issues).
 
 
-## 📫 How to reach me:
+## 📫 How to reach me
 <a href="https://ealizadeh.com" target="_blank"><img alt="Personal Website" src="https://img.shields.io/badge/Personal%20Website-%2312100E.svg?&style=for-the-badge&logoColor=white" /></a>
 <a href="https://www.linkedin.com/in/alizadehesmaeil/" target="_blank"><img alt="LinkedIn" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>
 <a href="https://medium.ealizadeh.com/" target="_blank"><img alt="Medium" src="https://img.shields.io/badge/medium-%2312100E.svg?&style=for-the-badge&logo=medium&logoColor=white" /></a>

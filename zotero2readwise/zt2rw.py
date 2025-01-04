@@ -1,10 +1,7 @@
 from typing import Dict, List
 
 from zotero2readwise.readwise import Readwise
-from zotero2readwise.zotero import (
-    ZoteroAnnotationsNotes,
-    get_zotero_client,
-)
+from zotero2readwise.zotero import ZoteroAnnotationsNotes, get_zotero_client
 
 
 class Zotero2Readwise:
