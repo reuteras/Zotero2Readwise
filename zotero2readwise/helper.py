@@ -24,7 +24,7 @@ def read_library_version():
     If the file does not exist or does not include a number, returns 0.
     """
     try:
-        with open('since', 'r', encoding='utf-8') as file:
+        with open('since', encoding='utf-8') as file:
             return int(file.read())
     except FileNotFoundError:
         print("since file does not exist, using library version 0")
