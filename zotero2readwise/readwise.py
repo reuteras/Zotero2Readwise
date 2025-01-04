@@ -4,7 +4,6 @@ from json import dump
 from typing import Dict, List, Optional, Union
 
 import requests
-
 from zotero2readwise import FAILED_ITEMS_DIR
 from zotero2readwise.exception import Zotero2ReadwiseError
 from zotero2readwise.helper import sanitize_tag
@@ -103,20 +102,24 @@ class Readwise:
         if annot.attachment_url is not None:
             attachment_id = annot.attachment_url.split("/")[-1]
             annot_id = annot.annotation_url.split("/")[-1]
-            highlight_url = f'zotero://open-pdf/library/items/{attachment_id}?page={location}%&annotation={annot_id}'
+            highlight_url = f"zotero://open-pdf/library/items/{attachment_id}?page={location}%&annotation={annot_id}"
         return ReadwiseHighlight(
             text=annot.text,
             title=annot.title,
             note=highlight_note,
             author=annot.creators,
-            category=Category.articles.name
-            if annot.document_type != "book"
-            else Category.books.name,
+            category=(
+                Category.articles.name
+                if annot.document_type != "book"
+                else Category.books.name
+            ),
             highlighted_at=annot.annotated_at,
             source_url=annot.source_url,
-            highlight_url=annot.annotation_url
-            if highlight_url is None
-            else highlight_url,
+            highlight_url=(
+                annot.annotation_url
+                if highlight_url is None
+                else highlight_url
+            ),
             location=location,
         )
 
@@ -142,7 +145,7 @@ class Readwise:
                 rw_highlight = self.convert_zotero_annotation_to_readwise_highlight(
                     annot
                 )
-            except:
+            except Exception:
                 self.failed_highlights.append(annot.get_nonempty_params())
                 continue  # Go to next annot
             rw_highlights.append(rw_highlight.get_nonempty_params())

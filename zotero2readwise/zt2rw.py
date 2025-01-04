@@ -1,10 +1,7 @@
 from typing import Dict, List
 
 from zotero2readwise.readwise import Readwise
-from zotero2readwise.zotero import (
-    ZoteroAnnotationsNotes,
-    get_zotero_client,
-)
+from zotero2readwise.zotero import ZoteroAnnotationsNotes, get_zotero_client
 
 
 class Zotero2Readwise:
@@ -16,8 +13,8 @@ class Zotero2Readwise:
         zotero_library_type: str = "user",
         include_annotations: bool = True,
         include_notes: bool = False,
-        filter_colors: List[str] = [],
-        since: int = 0
+        filter_colors: List[str] = None,
+        since: int = 0,
     ):
         self.readwise = Readwise(readwise_token)
         self.zotero_client = get_zotero_client(
@@ -58,7 +55,7 @@ class Zotero2Readwise:
             self.zotero.save_failed_items_to_json("failed_zotero_items.json")
 
         self.readwise.post_zotero_annotations_to_readwise(formatted_items)
-    
+
     def retrieve_all(self, item_type: str, since: int = 0):
         """
         Retrieves all items of a given type from Zotero Database since a given timestamp.
