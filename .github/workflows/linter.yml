@@ -34,4 +34,5 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter/slim@v7
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_DOCKERFILE_HADOLINT: false
