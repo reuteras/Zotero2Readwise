@@ -142,7 +142,7 @@ class Readwise:
                 rw_highlight = self.convert_zotero_annotation_to_readwise_highlight(
                     annot
                 )
-            except:
+            except Exception:
                 self.failed_highlights.append(annot.get_nonempty_params())
                 continue  # Go to next annot
             rw_highlights.append(rw_highlight.get_nonempty_params())
