@@ -1,5 +1,4 @@
 import re
-
 from dataclasses import dataclass, field
 from json import dump
 from os import environ
@@ -43,7 +42,7 @@ class ZoteroItem:
         # Sample {'dc:relation': ['http://zotero.org/users/123/items/ABC', 'http://zotero.org/users/123/items/DEF']}
         if self.relations:
             self.relations = self.relations.get("dc:relation")
-        
+
         if self.creators:
             et_al = " et al."
             max_length = 1024 - len(et_al)
@@ -85,20 +84,20 @@ def get_zotero_client(
     if library_id is None:
         try:
             library_id = environ["ZOTERO_LIBRARY_ID"]
-        except KeyError:
+        except KeyError as err:
             raise ParamNotPassed(
                 "No value for library_id is found. "
                 "You can set it as an environment variable `ZOTERO_LIBRARY_ID` or use `library_id` to set it."
-            )
+            ) from err
 
     if api_key is None:
         try:
             api_key = environ["ZOTERO_KEY"]
-        except KeyError:
+        except KeyError as err:
             raise ParamNotPassed(
                 "No value for api_key is found. "
                 "You can set it as an environment variable `ZOTERO_KEY` or use `api_key` to set it."
-            )
+            ) from err
 
     if library_type is None:
         library_type = environ.get("LIBRARY_TYPE", "user")
@@ -124,7 +123,7 @@ class ZoteroAnnotationsNotes:
         data = annot["data"]
         # A Zotero annotation or note must have a parent with parentItem key.
         parent_item_key = data["parentItem"]
-        
+
         if parent_item_key in self._parent_mapping:
             top_item_key = self._parent_mapping[parent_item_key]
             if top_item_key in self._cache:
@@ -233,7 +232,7 @@ class ZoteroAnnotationsNotes:
             try:
                 if len(self.filter_colors) == 0 or annot["data"]["annotationColor"] in self.filter_colors:
                     formatted_annots.append(self.format_item(annot))
-            except:
+            except Exception:
                 self.failed_items.append(annot)
                 continue
 
