@@ -1,9 +1,11 @@
 from argparse import ArgumentParser
-from distutils.util import strtobool
 
-from zotero2readwise.helper import write_library_version, read_library_version
+from zotero2readwise.helper import read_library_version, write_library_version
 from zotero2readwise.zt2rw import Zotero2Readwise
 
+
+def strtobool(argument):
+    return argument.lower() in ("yes", "true", "t", "1")
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Generate Markdown files")
@@ -54,10 +56,10 @@ if __name__ == "__main__":
     for bool_arg in ["include_annotations", "include_notes"]:
         try:
             args[bool_arg] = bool(strtobool(args[bool_arg]))
-        except ValueError:
+        except ValueError as err:
             raise ValueError(
                 f"Invalid value for --{bool_arg}. Use 'n' or 'y' (default)."
-            )
+            ) from err
 
     since = read_library_version() if args["use_since"] else 0
     zt2rw = Zotero2Readwise(
