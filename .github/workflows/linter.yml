@@ -37,8 +37,8 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter/slim@v7
         env:
+          FILTER_REGEX_EXCLUDE: CHANGELOG.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MARKDOWN_CUSTOM_RULE_GLOBS: README.md
           VALIDATE_MARKDOWN_PRETTIER: false
           VALIDATE_NATURAL_LANGUAGE: false
           VALIDATE_PYTHON_BLACK: false
