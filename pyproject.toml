@@ -16,11 +16,9 @@ build-backend = "pdm.backend"
 [tool.ruff]
 target-version = "py311"
 lint.select = [
-    "E",  # pycodestyle errors
-    "W",  # pycodestyle warnings
+    "PL", # Pylint
     "F",  # pyflakes
     "I",  # isort
-    "C",  # flake8-comprehensions
     "D",  # pydocstyle
     "B",  # flake8-bugbear
     "UP", # pyupgrade
