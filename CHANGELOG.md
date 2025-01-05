@@ -423,7 +423,7 @@ fix: Remove category from Readwise source_url ([`bb30d54`](https://github.com/e-
 
 * Update README.md
 
-Change zt2rw-cronjob to Zotero2Readwise-Sync. 
+Change zt2rw-cronjob to Zotero2Readwise-Sync.
 Fix the GitHub issue link. ([`3b2bc2f`](https://github.com/e-alizadeh/Zotero2Readwise/commit/3b2bc2f8f4a9c5c07f3cb4addb4dc59ba9cc74a5))
 
 * Update README ([`ddf0d64`](https://github.com/e-alizadeh/Zotero2Readwise/commit/ddf0d645382cbb7148cc3b6cc34b5a56067611f3))
