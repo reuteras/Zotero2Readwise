@@ -4,7 +4,7 @@ name: Zotero to Readwise Automation
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: "9 4 * * *"
 
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@vmain
+        uses: actions/checkout@main
         with:
           persist-credentials: false
           fetch-depth: 1
