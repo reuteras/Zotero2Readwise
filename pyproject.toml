@@ -5,7 +5,7 @@ version_variables = [
 ]
 
 [tool.semantic_release.remote.token]
-env = "GH_TOKEN" # default env name containing the GitHub Token 
+env = "GH_TOKEN" # default env name containing the GitHub Token
 
 [tool.pdm.build]
 includes = ["zotero2readwise"]
@@ -81,4 +81,3 @@ dev = [
     "pre-commit>=4.0.1",
     "ruff>=0.8.6",
 ]
-
