@@ -10,6 +10,8 @@ from zotero2readwise.exception import Zotero2ReadwiseError
 from zotero2readwise.helper import sanitize_tag
 from zotero2readwise.zotero import ZoteroItem
 
+HTTP_STATUS_OK = 200
+READWISE_HIGHLIGHT_MAX = 8191
 
 @dataclass
 class ReadwiseAPI:
@@ -70,7 +72,7 @@ class Readwise:
             headers=self._header,
             json={"highlights": highlights},
         )
-        if resp.status_code != 200:
+        if resp.status_code != HTTP_STATUS_OK:
             error_log_file = (
                 f"error_log_{resp.status_code}_failed_post_request_to_readwise.json"
             )
@@ -145,11 +147,11 @@ class Readwise:
         rw_highlights = []
         for annot in zotero_annotations:
             try:
-                if len(annot.text) >= 8191:
+                if len(annot.text) >= READWISE_HIGHLIGHT_MAX:
                     print(
                         f"A Zotero annotation from an item with {annot.title} (item_key={annot.key} and "
                         f"version={annot.version}) cannot be uploaded since the highlight/note is very long. "
-                        f"A Readwise highlight can be up to 8191 characters."
+                        f"A Readwise highlight can be up to {READWISE_HIGHLIGHT_MAX} characters."
                     )
                     self.failed_highlights.append(annot.get_nonempty_params())
                     continue  # Go to next annot
