@@ -1,3 +1,4 @@
+"""Init file."""
 from pathlib import Path
 
 __author__ = "Essi Alizadeh"

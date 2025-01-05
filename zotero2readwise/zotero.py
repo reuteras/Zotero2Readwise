@@ -1,8 +1,8 @@
+"""Functions and classes regarding Zotero."""
 import re
 from dataclasses import dataclass, field
 from json import dump
 from os import environ
-from typing import Dict, List, Optional
 
 from pyzotero.zotero import Zotero
 from pyzotero.zotero_errors import ParamNotPassed, UnsupportedParams
@@ -12,26 +12,28 @@ from zotero2readwise import FAILED_ITEMS_DIR
 
 @dataclass
 class ZoteroItem:
+    """Zotero item class."""
     key: str
     version: int
     item_type: str
     text: str
     annotated_at: str
     annotation_url: str
-    comment: Optional[str] = None
-    title: Optional[str] = None
-    tags: Optional[List[str]] = field(init=True, default=None)
-    document_tags: Optional[List[Dict]] = field(init=True, default=None)
-    document_type: Optional[int] = None
-    annotation_type: Optional[str] = None
-    creators: Optional[str] = field(init=True, default=None)
-    source_url: Optional[str] = None
-    attachment_url: Optional[str] = None
-    page_label: Optional[str] = None
-    color: Optional[str] = None
-    relations: Optional[Dict] = field(init=True, default=None)
+    comment: str | None = None
+    title: str | None = None
+    tags: list[str] | None = field(init=True, default=None)
+    document_tags: list[dict] | None = field(init=True, default=None)
+    document_type: int | None = None
+    annotation_type: str | None = None
+    creators: str | None = field(init=True, default=None)
+    source_url: str | None = None
+    attachment_url: str | None = None
+    page_label: str | None = None
+    color: str | None = None
+    relations: dict | None = field(init=True, default=None)
 
     def __post_init__(self):
+        """Post init function to clean up items."""
         # Convert [{'tag': 'abc'}, {'tag': 'def'}] -->  ['abc', 'def']
         if self.tags:
             self.tags = [d_["tag"] for d_ in self.tags]
@@ -53,14 +55,15 @@ class ZoteroItem:
                     self.creators = match
                 self.creators += et_al
 
-    def get_nonempty_params(self) -> Dict:
+    def get_nonempty_params(self) -> dict:
+        """Get nonempty parameters."""
         return {k: v for k, v in self.__dict__.items() if v}
 
 
 def get_zotero_client(
     library_id: str = None, api_key: str = None, library_type: str = "user"
 ) -> Zotero:
-    """Create a Zotero client object from Pyzotero library
+    """Create a Zotero client object from Pyzotero library.
 
     Zotero userID and Key are available
 
@@ -74,12 +77,11 @@ def get_zotero_client(
         'user': to access your Zotero library
         'group': to access a shared group library
 
-    Returns
+    Returns:
     -------
     Zotero
         a Zotero client object
     """
-
     if library_id is None:
         try:
             library_id = environ["ZOTERO_LIBRARY_ID"]
@@ -111,14 +113,17 @@ def get_zotero_client(
 
 
 class ZoteroAnnotationsNotes:
-    def __init__(self, zotero_client: Zotero, filter_colors: List[str]):
+    """Class for Zotero Annotations notes."""
+    def __init__(self, zotero_client: Zotero, filter_colors: list[str]):
+        """Init function."""
         self.zot = zotero_client
-        self.failed_items: List[Dict] = []
-        self._cache: Dict = {}
-        self._parent_mapping: Dict = {}
-        self.filter_colors: List[str] = filter_colors
+        self.failed_items: list[dict] = []
+        self._cache: dict = {}
+        self._parent_mapping: dict = {}
+        self.filter_colors: list[str] = filter_colors
 
-    def get_item_metadata(self, annot: Dict) -> Dict:
+    def get_item_metadata(self, annot: dict) -> dict:
+        """Get metadata for item."""
         data = annot["data"]
         # A Zotero annotation or note must have a parent with parentItem key.
         parent_item_key = data["parentItem"]
@@ -169,7 +174,8 @@ class ZoteroAnnotationsNotes:
         self._cache[top_item_key] = metadata
         return metadata
 
-    def format_item(self, annot: Dict) -> ZoteroItem:
+    def format_item(self, annot: dict) -> ZoteroItem:
+        """Format Zotero item."""
         data = annot["data"]
         item_type = data["itemType"]
         annotation_type = data.get("annotationType")
@@ -227,7 +233,8 @@ class ZoteroAnnotationsNotes:
             relations=data["relations"],
         )
 
-    def format_items(self, annots: List[Dict]) -> List[ZoteroItem]:
+    def format_items(self, annots: list[dict]) -> list[ZoteroItem]:
+        """Format all Zotero items."""
         formatted_annots = []
         print(
             f"ZOTERO: Start formatting {len(annots)} annotations/notes...\n"
@@ -255,12 +262,13 @@ class ZoteroAnnotationsNotes:
         return formatted_annots
 
     def save_failed_items_to_json(self, json_filepath_failed_items: str = None):
+        """Save failed items to json."""
         FAILED_ITEMS_DIR.mkdir(parents=True, exist_ok=True)
         if json_filepath_failed_items:
             out_filepath = FAILED_ITEMS_DIR.joinpath(json_filepath_failed_items)
         else:
             out_filepath = FAILED_ITEMS_DIR.joinpath("failed_zotero_items.json")
 
-        with open(out_filepath, "w") as f:
+        with open(out_filepath, "w", encoding="utf-8") as f:
             dump(self.failed_items, f, indent=4)
         print(f"\nZOTERO: Detail of failed items are saved into {out_filepath}\n")

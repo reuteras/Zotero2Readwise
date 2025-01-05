@@ -1,3 +1,4 @@
+"""Helper functions."""
 def sanitize_tag(tag: str) -> str:
     """Clean tag by replacing empty spaces with underscore.
 
@@ -5,12 +6,12 @@ def sanitize_tag(tag: str) -> str:
     ----------
     tag: str
 
-    Returns
+    Returns:
     -------
     str
         Cleaned tag
 
-    Examples
+    Examples:
     --------
     >>> sanitize_tag(" Machine Learning ")
     "Machine_Learning"
@@ -20,8 +21,8 @@ def sanitize_tag(tag: str) -> str:
 
 
 def read_library_version():
-    """
-    Reads the library version from the 'since' file and returns it as an integer.
+    """Reads the library version from the 'since' file and returns it as an integer.
+
     If the file does not exist or does not include a number, returns 0.
     """
     try:
@@ -35,8 +36,7 @@ def read_library_version():
 
 
 def write_library_version(zotero_client):
-    """
-    Writes the library version of the given Zotero client to a file named 'since'.
+    """Writes the library version of the given Zotero client to a file named 'since'.
 
     Args:
         zotero_client: A Zotero client object.

@@ -13,27 +13,20 @@ includes = ["zotero2readwise"]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
-[tool.black]
-line-length = 100
-
-[tool.mypy]
-python_version = "3.11"
-
 [tool.ruff]
-target-version = "py38"
+target-version = "py311"
 lint.select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
     "F",  # pyflakes
     "I",  # isort
     "C",  # flake8-comprehensions
+    "D",  # pydocstyle
     "B",  # flake8-bugbear
     "UP", # pyupgrade
 ]
 lint.ignore = [
     "E501",  # line too long, handled by black
-    "B008",  # do not perform function calls in argument defaults
-    "C901",  # too complex
 ]
 fix = true
 
@@ -62,10 +55,10 @@ keywords = [
     "Readwise",
 ]
 classifiers = [
-    "Topic :: Software Development :: Build Tools",
-    "Topic :: Software Development :: Libraries :: Python Modules",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Utilities",
     "Development Status :: 3 - Alpha",
@@ -79,5 +72,6 @@ documentation = "https://github.com/e-alizadeh/Zotero2Readwise"
 [dependency-groups]
 dev = [
     "pre-commit>=4.0.1",
+    "pylint>=3.3.3",
     "ruff>=0.8.6",
 ]

@@ -1,3 +1,4 @@
+"""Function to run the tool."""
 from argparse import ArgumentParser
 
 from zotero2readwise.helper import read_library_version, write_library_version
@@ -5,10 +6,12 @@ from zotero2readwise.zt2rw import Zotero2Readwise
 
 
 def strtobool(argument):
+    """Convert string to bool if matching."""
     return argument.lower() in ("yes", "true", "t", "1")
 
 
 if __name__ == "__main__":
+    """Main function"""
     parser = ArgumentParser(description="Generate Markdown files")
     parser.add_argument(
         "readwise_token",

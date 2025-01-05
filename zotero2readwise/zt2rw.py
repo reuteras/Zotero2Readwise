@@ -1,10 +1,10 @@
-from typing import Dict, List
-
+"""Files for copying data from Zotero to Readwise."""
 from zotero2readwise.readwise import Readwise
 from zotero2readwise.zotero import ZoteroAnnotationsNotes, get_zotero_client
 
 
 class Zotero2Readwise:
+    """Zotero2Readwise class."""
     def __init__(
         self,
         readwise_token: str,
@@ -13,9 +13,10 @@ class Zotero2Readwise:
         zotero_library_type: str = "user",
         include_annotations: bool = True,
         include_notes: bool = False,
-        filter_colors: List[str] = None,
+        filter_colors: list[str] = None,
         since: int = 0,
     ):
+        """Init function."""
         self.readwise = Readwise(readwise_token)
         self.zotero_client = get_zotero_client(
             library_id=zotero_library_id,
@@ -27,9 +28,8 @@ class Zotero2Readwise:
         self.include_notes = include_notes
         self.since = since
 
-    def get_all_zotero_items(self) -> List[Dict]:
-        """
-        Retrieves all Zotero items of the specified types (notes and/or annotations) that were modified since the specified date.
+    def get_all_zotero_items(self) -> list[dict]:
+        """Retrieves all Zotero items of the specified types (notes and/or annotations) that were modified since the specified date.
 
         Returns:
         A list of dictionaries representing the retrieved Zotero items.
@@ -45,7 +45,8 @@ class Zotero2Readwise:
 
         return items
 
-    def run(self, zot_annots_notes: List[Dict] = None) -> None:
+    def run(self, zot_annots_notes: list[dict] = None) -> None:
+        """Function to handle the process of getting data from Zotero to Readwise."""
         if zot_annots_notes is None:
             zot_annots_notes = self.get_all_zotero_items()
 
@@ -64,8 +65,7 @@ class Zotero2Readwise:
             print("No new items.")
 
     def retrieve_all(self, item_type: str, since: int = 0):
-        """
-        Retrieves all items of a given type from Zotero Database since a given timestamp.
+        """Retrieves all items of a given type from Zotero Database since a given timestamp.
 
         Args:
             item_type (str): Either "annotation" or "note".
