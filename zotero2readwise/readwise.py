@@ -4,6 +4,7 @@ from json import dump
 from typing import Dict, List, Optional, Union
 
 import requests
+
 from zotero2readwise import FAILED_ITEMS_DIR
 from zotero2readwise.exception import Zotero2ReadwiseError
 from zotero2readwise.helper import sanitize_tag
