@@ -52,7 +52,6 @@ requires-python = "<4.0,>=3.10"
 dependencies = [
     "Pyzotero<1.6.2,>=1.6.1",
     "requests<3.0.0,>=2.26.0",
-    "ruff>=0.8.6",
 ]
 name = "zotero2readwise"
 version = "0.4.5"
@@ -76,4 +75,10 @@ classifiers = [
 homepage = "https://github.com/e-alizadeh/Zotero2Readwise"
 repository = "https://github.com/e-alizadeh/Zotero2Readwise"
 documentation = "https://github.com/e-alizadeh/Zotero2Readwise"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1",
+    "ruff>=0.8.6",
+]
 
