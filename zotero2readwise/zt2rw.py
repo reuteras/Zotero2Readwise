@@ -49,12 +49,19 @@ class Zotero2Readwise:
         if zot_annots_notes is None:
             zot_annots_notes = self.get_all_zotero_items()
 
-        formatted_items = self.zotero.format_items(zot_annots_notes)
+        if zot_annots_notes:
+            formatted_items = self.zotero.format_items(zot_annots_notes)
+        else:
+            print("No items to format.")
+            formatted_items = []
 
         if self.zotero.failed_items:
             self.zotero.save_failed_items_to_json("failed_zotero_items.json")
 
-        self.readwise.post_zotero_annotations_to_readwise(formatted_items)
+        if formatted_items:
+            self.readwise.post_zotero_annotations_to_readwise(formatted_items)
+        else:
+            print("No new items.")
 
     def retrieve_all(self, item_type: str, since: int = 0):
         """
