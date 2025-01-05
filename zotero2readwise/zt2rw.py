@@ -5,7 +5,7 @@ from zotero2readwise.zotero import ZoteroAnnotationsNotes, get_zotero_client
 
 class Zotero2Readwise:
     """Zotero2Readwise class."""
-    def __init__(
+    def __init__( # noqa PLR0913
         self,
         readwise_token: str,
         zotero_key: str,
