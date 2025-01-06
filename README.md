@@ -42,9 +42,9 @@ Since we have to retrieve the notes from Zotero API and then upload them to the 
 * **Zotero personal or group ID** [Required]:
   * Your **personal library ID** (aka **userID**) can be found [here](https://www.zotero.org/settings/keys) next to `Your userID for use in API calls is XXXXXX`.
   * If you're using a **group library**, you can find the library ID by
-        1. Go to `https://www.zotero.org/groups/`
-        2. Click on the interested group.
-        3. You can find the library ID from the URL link that has format like _[https://www.zotero.org/groups/](https://www.zotero.org/groups/)<group_id>/group_name_. The number between `/groups/` and `/group_name` is the libarry ID.
+    1. Go to `https://www.zotero.org/groups/`
+    2. Click on the interested group.
+    3. You can find the library ID from the URL link that has format like _[https://www.zotero.org/groups/](https://www.zotero.org/groups/)<group_id>/group_name_. The number between `/groups/` and `/group_name` is the libarry ID.
 * **Zotero library type** [Optional]: _"user"_ (default) if using personal library and _"group"_ if using group library.
 
 Note that if you want to retrieve annotations and notes from a group, you should provide the group ID (`zotero_library_id=<group_id>`) and set the library type to group (`zotero_library_type="group"`).
