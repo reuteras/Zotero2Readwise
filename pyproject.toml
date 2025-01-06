@@ -44,7 +44,7 @@ authors = [
 license = {text = "MIT"}
 requires-python = "<4.0,>=3.10"
 dependencies = [
-    "Pyzotero<1.6.2,>=1.6.1",
+    "Pyzotero<2.0.0,>=1.6.3",
     "requests<3.0.0,>=2.26.0",
 ]
 name = "zotero2readwise"
