@@ -16,13 +16,13 @@ build-backend = "pdm.backend"
 [tool.ruff]
 target-version = "py311"
 lint.select = [
-    "PL", # Pylint
-    "F",  # pyflakes
-    "I",  # isort
-    "D",  # pydocstyle
-    "B",  # flake8-bugbear
-    "UP", # pyupgrade
-    "RUF", # Ruff-specific
+    "PL",   # Pylint
+    "F",    # pyflakes
+    "I",    # isort
+    "D",    # pydocstyle
+    "B",    # flake8-bugbear
+    "UP",   # pyupgrade
+    "RUF",  # Ruff-specific
 ]
 lint.ignore = [
     "E501",  # line too long, handled by black
