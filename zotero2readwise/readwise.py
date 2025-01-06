@@ -71,6 +71,7 @@ class Readwise:
             url=self.endpoints.highlights,
             headers=self._header,
             json={"highlights": highlights},
+            timeout=30,
         )
         if resp.status_code != HTTP_STATUS_OK:
             error_log_file = (
