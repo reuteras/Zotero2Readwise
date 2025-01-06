@@ -61,7 +61,7 @@ class ZoteroItem:
 
 
 def get_zotero_client(
-    library_id: str = None, api_key: str = None, library_type: str = "user"
+    library_id: str | None = None, api_key: str | None = None, library_type: str = "user"
 ) -> Zotero:
     """Create a Zotero client object from Pyzotero library.
 
@@ -261,7 +261,7 @@ class ZoteroAnnotationsNotes:
         print(finished_msg)
         return formatted_annots
 
-    def save_failed_items_to_json(self, json_filepath_failed_items: str = None):
+    def save_failed_items_to_json(self, json_filepath_failed_items: str | None = None):
         """Save failed items to json."""
         FAILED_ITEMS_DIR.mkdir(parents=True, exist_ok=True)
         if json_filepath_failed_items:

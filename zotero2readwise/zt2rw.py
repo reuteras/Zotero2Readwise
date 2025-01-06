@@ -13,7 +13,7 @@ class Zotero2Readwise:
         zotero_library_type: str = "user",
         include_annotations: bool = True,
         include_notes: bool = False,
-        filter_colors: list[str] = None,
+        filter_colors: list[str] | None = None,
         since: int = 0,
     ):
         """Init function."""
@@ -45,7 +45,7 @@ class Zotero2Readwise:
 
         return items
 
-    def run(self, zot_annots_notes: list[dict] = None) -> None:
+    def run(self, zot_annots_notes: list[dict] | None = None) -> None:
         """Function to handle the process of getting data from Zotero to Readwise."""
         if zot_annots_notes is None:
             zot_annots_notes = self.get_all_zotero_items()
