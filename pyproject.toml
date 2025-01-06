@@ -9,6 +9,7 @@ env = "GH_TOKEN" # default env name containing the GitHub Token
 
 [tool.pdm.build]
 includes = ["zotero2readwise"]
+
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
@@ -38,6 +39,7 @@ convention="google"
 [project]
 authors = [
     {name = "ealizadeh", email = "hello@ealizadeh.com"},
+    {name = "Peter Reuterås", email = "peter@reuteras.net"},
 ]
 license = {text = "MIT"}
 requires-python = "<4.0,>=3.10"
