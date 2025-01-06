@@ -22,6 +22,7 @@ lint.select = [
     "D",  # pydocstyle
     "B",  # flake8-bugbear
     "UP", # pyupgrade
+    "RUF", # Ruff-specific
 ]
 lint.ignore = [
     "E501",  # line too long, handled by black
