@@ -5,7 +5,7 @@ from json import dump
 from os import environ
 
 from pyzotero.zotero import Zotero
-from pyzotero.zotero_errors import ParamNotPassed, UnsupportedParams
+from pyzotero.zotero_errors import ParamNotPassedError, UnsupportedParamsError
 
 from zotero2readwise import FAILED_ITEMS_DIR
 
@@ -86,7 +86,7 @@ def get_zotero_client(
         try:
             library_id = environ["ZOTERO_LIBRARY_ID"]
         except KeyError as err:
-            raise ParamNotPassed(
+            raise ParamNotPassedError(
                 "No value for library_id is found. "
                 "You can set it as an environment variable `ZOTERO_LIBRARY_ID` or use `library_id` to set it."
             ) from err
@@ -95,7 +95,7 @@ def get_zotero_client(
         try:
             api_key = environ["ZOTERO_KEY"]
         except KeyError as err:
-            raise ParamNotPassed(
+            raise ParamNotPassedError(
                 "No value for api_key is found. "
                 "You can set it as an environment variable `ZOTERO_KEY` or use `api_key` to set it."
             ) from err
@@ -103,7 +103,7 @@ def get_zotero_client(
     if library_type is None:
         library_type = environ.get("LIBRARY_TYPE", "user")
     elif library_type not in ["user", "group"]:
-        raise UnsupportedParams("library_type value can either be 'user' or 'group'.")
+        raise UnsupportedParamsError("library_type value can either be 'user' or 'group'.")
 
     return Zotero(
         library_id=library_id,
