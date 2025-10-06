@@ -386,7 +386,7 @@ wheels = [
 
 [[package]]
 name = "pyzotero"
-version = "1.6.16"
+version = "1.6.17"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "bibtexparser" },
@@ -394,9 +394,9 @@ dependencies = [
     { name = "httpx" },
     { name = "whenever" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cd/b4/83fab7fae10cb037b2154319f81acac7ebfe542bd97d44a869c263f11406/pyzotero-1.6.16.tar.gz", hash = "sha256:05de8cd99e13b6526882a464b9af779634ee59ef82820f10ff5a1db729aebc37", size = 526904, upload-time = "2025-09-22T10:25:20.601Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3b/42/47603ecd35b062a4d62988970b09f072885162cf6c0de2009040698a8397/pyzotero-1.6.17.tar.gz", hash = "sha256:e0667797fc90266a29effa138831717a4fccd7fe838e96aaa3edc2c6a9ba1dd3", size = 527253, upload-time = "2025-10-06T09:49:01.888Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c3/99/93de7753bf7ce689c05cfb4b2f2817895203295b85747f0d165d98590ef5/pyzotero-1.6.16-py3-none-any.whl", hash = "sha256:d94bd18cb68fdeb3ea3090af372ab1411b5613e99e98a3a312cc1b3792d1e180", size = 24765, upload-time = "2025-09-22T10:25:18.744Z" },
+    { url = "https://files.pythonhosted.org/packages/13/27/5ace03992849b39c9b0b99fd166b54e095a7103d892517adff1d1c833d5c/pyzotero-1.6.17-py3-none-any.whl", hash = "sha256:93df491d9a9b1f8cdb6a768b0f21c13b393d5e0f174b2e94162c7689df95b154", size = 24746, upload-time = "2025-10-06T09:49:00.479Z" },
 ]
 
 [[package]]
@@ -659,12 +659,12 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "pyzotero", specifier = ">=1.6.3,<2.0.0" },
-    { name = "requests", specifier = ">=2.26.0,<3.0.0" },
+    { name = "requests", specifier = ">=2.32.5,<3.0.0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "pre-commit", specifier = ">=4.0.1" },
-    { name = "pylint", specifier = ">=3.3.3" },
-    { name = "ruff", specifier = ">=0.8.6" },
+    { name = "pre-commit", specifier = ">=4.3.0" },
+    { name = "pylint", specifier = ">=3.3.8" },
+    { name = "ruff", specifier = ">=0.13.2" },
 ]
