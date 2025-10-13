@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 1
 
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: 3.11
       - run: uv run python3 zotero2readwise/run.py --include_annotations yes --include_notes yes ${{ secrets.READWISE_TOKEN }} ${{ secrets.ZOTERO_KEY }} ${{ secrets.ZOTERO_ID }}
